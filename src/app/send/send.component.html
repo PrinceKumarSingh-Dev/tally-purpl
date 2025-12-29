@@ -1,0 +1,15 @@
+<h2>Send Text to Tally</h2>
+
+<textarea
+  rows="15"
+  cols="100"
+  [(ngModel)]="text"
+  placeholder="Paste text here">
+</textarea>
+
+<br><br>
+
+<button (click)="send()">Send</button>
+
+<h3>Response</h3>
+<pre>{{ response }}</pre>
