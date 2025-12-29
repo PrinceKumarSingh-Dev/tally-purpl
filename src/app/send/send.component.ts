@@ -10,7 +10,98 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SendComponent {
 
-  text = '';
+ text = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ENVELOPE>
+    <HEADER>
+        <TALLYREQUEST>Import Data</TALLYREQUEST>
+    </HEADER>
+    <BODY>
+        <IMPORTDATA>
+            <REQUESTDESC>
+                <REPORTNAME>All Masters</REPORTNAME>
+                <STATICVARIABLES>
+                    <SVCURRENTCOMPANY>Sparrow</SVCURRENTCOMPANY>
+                </STATICVARIABLES>
+            </REQUESTDESC>
+            <REQUESTDATA>
+
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <COSTCATEGORY NAME="Business Unit" RESERVEDNAME="">
+                        <ISUPDATINGTARGETID>No</ISUPDATINGTARGETID>
+                        <ISDELETED>No</ISDELETED>
+                        <ASORIGINAL>Yes</ASORIGINAL>
+                        <AFFECTSSTOCK>No</AFFECTSSTOCK>
+                        <ALLOCATEREVENUE>Yes</ALLOCATEREVENUE>
+                        <ALLOCATENONREVENUE>No</ALLOCATENONREVENUE>
+                        <UDF:GUID TYPE="String">4</UDF:GUID>
+                        <LANGUAGENAME.LIST>
+                            <NAME.LIST TYPE="String">
+                                <NAME>Business Unit</NAME>
+                            </NAME.LIST>
+                            <LANGUAGEID>1033</LANGUAGEID>
+                        </LANGUAGENAME.LIST>
+                    </COSTCATEGORY>
+                </TALLYMESSAGE>
+
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <COSTCATEGORY NAME="Department" RESERVEDNAME="">
+                        <ISUPDATINGTARGETID>No</ISUPDATINGTARGETID>
+                        <ISDELETED>No</ISDELETED>
+                        <ASORIGINAL>Yes</ASORIGINAL>
+                        <AFFECTSSTOCK>No</AFFECTSSTOCK>
+                        <ALLOCATEREVENUE>Yes</ALLOCATEREVENUE>
+                        <ALLOCATENONREVENUE>No</ALLOCATENONREVENUE>
+                        <UDF:GUID TYPE="String">4</UDF:GUID>
+                        <LANGUAGENAME.LIST>
+                            <NAME.LIST TYPE="String">
+                                <NAME>Department</NAME>
+                            </NAME.LIST>
+                            <LANGUAGEID>1033</LANGUAGEID>
+                        </LANGUAGENAME.LIST>
+                    </COSTCATEGORY>
+                </TALLYMESSAGE>
+
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <COSTCATEGORY NAME="Location" RESERVEDNAME="">
+                        <ISUPDATINGTARGETID>No</ISUPDATINGTARGETID>
+                        <ISDELETED>No</ISDELETED>
+                        <ASORIGINAL>Yes</ASORIGINAL>
+                        <AFFECTSSTOCK>No</AFFECTSSTOCK>
+                        <ALLOCATEREVENUE>Yes</ALLOCATEREVENUE>
+                        <ALLOCATENONREVENUE>No</ALLOCATENONREVENUE>
+                        <UDF:GUID TYPE="String">4</UDF:GUID>
+                        <LANGUAGENAME.LIST>
+                            <NAME.LIST TYPE="String">
+                                <NAME>Location</NAME>
+                            </NAME.LIST>
+                            <LANGUAGEID>1033</LANGUAGEID>
+                        </LANGUAGENAME.LIST>
+                    </COSTCATEGORY>
+                </TALLYMESSAGE>
+
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <COSTCATEGORY NAME="Project" RESERVEDNAME="">
+                        <ISUPDATINGTARGETID>No</ISUPDATINGTARGETID>
+                        <ISDELETED>No</ISDELETED>
+                        <ASORIGINAL>Yes</ASORIGINAL>
+                        <AFFECTSSTOCK>No</AFFECTSSTOCK>
+                        <ALLOCATEREVENUE>Yes</ALLOCATEREVENUE>
+                        <ALLOCATENONREVENUE>No</ALLOCATENONREVENUE>
+                        <UDF:GUID TYPE="String">4</UDF:GUID>
+                        <LANGUAGENAME.LIST>
+                            <NAME.LIST TYPE="String">
+                                <NAME>Project</NAME>
+                            </NAME.LIST>
+                            <LANGUAGEID>1033</LANGUAGEID>
+                        </LANGUAGENAME.LIST>
+                    </COSTCATEGORY>
+                </TALLYMESSAGE>
+
+            </REQUESTDATA>
+        </IMPORTDATA>
+    </BODY>
+</ENVELOPE>`;
+
   tallyUrl = 'http://127.0.0.1:9000';
   backendUrl = 'http://localhost:9092/setup/subsidiary/send-to-tally?id=4';
   devbackendUrl = 'http://3.7.121.16:9092/setup/subsidiary/send-to-tally?id=4';
@@ -57,4 +148,16 @@ export class SendComponent {
 
     alert('Tally status request sent');
   }
+
+
+  send() {
+  fetch(this.tallyUrl, {
+    method: 'POST',
+    body: this.text,
+    mode: 'no-cors'
+  });
+
+  alert('Request sent to Tally');
+}
+
 }
