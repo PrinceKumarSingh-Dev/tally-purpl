@@ -1,15 +1,18 @@
-<h2>Send Text to Tally</h2>
+<h2>Tally Test Page</h2>
+
+<button (click)="checkStatus()">Check Tally Status</button>
+<br><br>
+
+<button (click)="fetchXmlFromBackend()">Fetch XML from Backend</button>
+<br><br>
 
 <textarea
   rows="15"
   cols="100"
   [(ngModel)]="text"
-  placeholder="Paste text here">
+  placeholder="XML will appear here">
 </textarea>
 
 <br><br>
 
-<button (click)="send()">Send</button>
-
-<h3>Response</h3>
-<pre>{{ response }}</pre>
+<button (click)="sendToTally()">Send XML to Tally</button>
